@@ -173,19 +173,14 @@ const Scene = ({ userTexture, wallColor }) => {
 
 // AI Recommendation functions
 const getRecommendations = (preferences) => {
-  const { budget, durability, sustainability, maintenance, moisture, room } =
-    preferences;
+  const { budget, durability, sustainability, maintenance, moisture, room } = preferences;
 
   // Convert preferences to numerical weights
   const budgetWeight = budget === "high" ? 3 : budget === "medium" ? 2 : 1;
-  const durabilityWeight =
-    durability === "high" ? 3 : durability === "medium" ? 2 : 1;
-  const sustainabilityWeight =
-    sustainability === "high" ? 3 : sustainability === "medium" ? 2 : 1;
-  const maintenanceWeight =
-    maintenance === "high" ? 1 : maintenance === "medium" ? 2 : 3; // Inverse (low maintenance is preferred)
-  const moistureWeight =
-    moisture === "high" ? 3 : moisture === "medium" ? 2 : 1;
+  const durabilityWeight = durability === "high" ? 3 : durability === "medium" ? 2 : 1;
+  const sustainabilityWeight = sustainability === "high" ? 3 : sustainability === "medium" ? 2 : 1;
+  const maintenanceWeight = maintenance === "high" ? 1 : maintenance === "medium" ? 2 : 3; // Inverse (low maintenance is preferred)
+  const moistureWeight = moisture === "high" ? 3 : moisture === "medium" ? 2 : 1;
 
   // Calculate scores for each flooring option
   const scoredOptions = floorOptionsData.map((floor) => {
@@ -193,16 +188,8 @@ const getRecommendations = (preferences) => {
     let budgetScore = 10 - Math.min(floor.price / 15, 10); // Lower price = higher score
     let durabilityScore = floor.durability;
     let sustainabilityScore = floor.sustainabilityScore;
-    let maintenanceScore = floor.maintenance.includes("Low")
-      ? 9
-      : floor.maintenance.includes("Moderate")
-      ? 6
-      : 3;
-    let moistureScore = floor.moistureResistance.includes("High")
-      ? 9
-      : floor.moistureResistance.includes("Moderate")
-      ? 6
-      : 3;
+    let maintenanceScore = floor.maintenance.includes("Low") ? 9 : floor.maintenance.includes("Moderate") ? 6 : 3;
+    let moistureScore = floor.moistureResistance.includes("High") ? 9 : floor.moistureResistance.includes("Moderate") ? 6 : 3;
 
     // Room suitability bonus
     let roomSuitabilityBonus = floor.roomSuitability.includes(room) ? 2 : 0;
@@ -215,12 +202,7 @@ const getRecommendations = (preferences) => {
         maintenanceScore * maintenanceWeight +
         moistureScore * moistureWeight +
         roomSuitabilityBonus) /
-      (budgetWeight +
-        durabilityWeight +
-        sustainabilityWeight +
-        maintenanceWeight +
-        moistureWeight +
-        1);
+      (budgetWeight + durabilityWeight + sustainabilityWeight + maintenanceWeight + moistureWeight + 1);
 
     return {
       ...floor,
@@ -250,9 +232,7 @@ const getPredictiveInsights = (selectedFloor) => {
       selectedFloor.sustainabilityScore > 7
         ? "Increasing in popularity"
         : "Stable market demand",
-    installationTimeEstimate: selectedFloor.installationComplexity.includes(
-      "High"
-    )
+    installationTimeEstimate: selectedFloor.installationComplexity.includes("High")
       ? "3-5 days"
       : selectedFloor.installationComplexity.includes("Moderate")
       ? "2-3 days"
@@ -260,7 +240,7 @@ const getPredictiveInsights = (selectedFloor) => {
   };
 };
 
-const Room = ({ home }) => {
+export default function RoomPage() {
   const [userTexture, setUserTexture] = useState("/wood-parquet.jpeg");
   const [wallColor, setWallColor] = useState("#EAE7DC"); // Default wall color
   const [showFloorOptions, setShowFloorOptions] = useState(false);
@@ -276,8 +256,7 @@ const Room = ({ home }) => {
   });
   const [showAIRecommendations, setShowAIRecommendations] = useState(false);
   const [recommendedFloors, setRecommendedFloors] = useState([]);
-  const [showSelectedFloorDetails, setShowSelectedFloorDetails] =
-    useState(false);
+  const [showSelectedFloorDetails, setShowSelectedFloorDetails] = useState(false);
   const [predictiveInsights, setPredictiveInsights] = useState(null);
   const [floorArea, setFloorArea] = useState(25); // Default floor area in m²
   const [showSideBySide, setShowSideBySide] = useState(false);
@@ -387,21 +366,19 @@ const Room = ({ home }) => {
         overflow: "hidden",
       }}
     >
-      {!home && (
-        <AiFloorSelector
-          roomType={roomType}
-          handleRoomTypeChange={handleRoomTypeChange}
-          floorArea={floorArea}
-          handleFloorAreaChange={handleFloorAreaChange}
-          handlePreferenceChange={handlePreferenceChange}
-          handleTextureUpload={handleTextureUpload}
-          generateRecommendations={generateRecommendations}
-          userPreferences={userPreferences}
-          toggleFloorOptions={toggleFloorOptions}
-          wallColor={wallColor}
-          handleWallColorChange={handleWallColorChange}
-        />
-      )}
+      <AiFloorSelector
+        roomType={roomType}
+        handleRoomTypeChange={handleRoomTypeChange}
+        floorArea={floorArea}
+        handleFloorAreaChange={handleFloorAreaChange}
+        handlePreferenceChange={handlePreferenceChange}
+        handleTextureUpload={handleTextureUpload}
+        generateRecommendations={generateRecommendations}
+        userPreferences={userPreferences}
+        toggleFloorOptions={toggleFloorOptions}
+        wallColor={wallColor}
+        handleWallColorChange={handleWallColorChange}
+      />
 
       {/* Floor Options Panel */}
       {showFloorOptions && (
@@ -454,6 +431,4 @@ const Room = ({ home }) => {
       </Canvas>
     </div>
   );
-};
-
-export default Room;
+}

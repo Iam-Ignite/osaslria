@@ -257,11 +257,14 @@ nav {
     border-radius: 10px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    height: 70vh;
+    width: 100%;
+
 }
 
 .hero-3d-preview img {
     width: 100%;
-    height: auto;
+    height: 50vh;
 }
 
 /* Experience Flow Section */
