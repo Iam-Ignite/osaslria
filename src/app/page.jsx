@@ -38,10 +38,10 @@ export default function Home() {
           <Link href="/room" className="start-designing-button">
             Start Designing
           </Link>
-          <div className="hero-3d-preview">
+          {/* <div className="hero-3d-preview">
             <Room home
             />
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -244,62 +244,7 @@ export default function Home() {
       </section>
 
       {/* <!-- AI Features Section --> */}
-      <section className="ai-features">
-        <div className="container">
-          <div className="section-title">
-            <h2>AI-Powered Design Assistant</h2>
-            <p>
-              Let our intelligent system help you make the perfect design
-              choices
-            </p>
-          </div>
-          <div className="ai-content">
-            <div className="ai-image">
-              <img src="/api/placeholder/600/400" alt="AI Recommendations" />
-            </div>
-            <div className="ai-text">
-              <h3>Making Design Decisions Effortless</h3>
-              <p>
-                Our artificial intelligence system analyzes thousands of
-                interior design combinations to offer you personalized
-                recommendations that perfectly match your style and space.
-              </p>
-              <div className="ai-features-list">
-                <div className="ai-feature-item">
-                  <div className="ai-feature-icon">🧠</div>
-                  <div className="ai-feature-text">
-                    <h4>Best Floor Recommendations</h4>
-                    <p>
-                      Get ideal flooring suggestions based on room type and
-                      aesthetic preferences
-                    </p>
-                  </div>
-                </div>
-                <div className="ai-feature-item">
-                  <div className="ai-feature-icon">🔄</div>
-                  <div className="ai-feature-text">
-                    <h4>Side-by-Side Comparison</h4>
-                    <p>
-                      Compare multiple options simultaneously to make confident
-                      decisions
-                    </p>
-                  </div>
-                </div>
-                <div className="ai-feature-item">
-                  <div className="ai-feature-icon">🎨</div>
-                  <div className="ai-feature-text">
-                    <h4>Color Harmony Suggestions</h4>
-                    <p>
-                      Receive complementary wall color recommendations that
-                      enhance your flooring choice
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* <!-- CTA Section --> */}
       <section className="cta-section">
